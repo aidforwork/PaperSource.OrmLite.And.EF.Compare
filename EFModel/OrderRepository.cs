@@ -7,8 +7,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-using Common;
-
 namespace EFModel
 {
 	public class OrderRepository
@@ -66,11 +64,11 @@ namespace EFModel
 			}
 		}
 
-		public Order SelectFirst()
+		public Order SelectById(int id)
 		{
 			using (var context = new Context(ConnectionString))
 			{
-				return context.Orders.AsNoTracking().FirstOrDefault();
+				return context.Orders.AsNoTracking().FirstOrDefault(order => order.Id == id);
 			}
 		}
 	}

@@ -7,8 +7,6 @@ using System.Threading.Tasks;
 
 using NUnit.Framework;
 
-using OrmLiteModel;
-
 namespace Tests
 {
 	[TestFixture]
@@ -24,5 +22,12 @@ namespace Tests
 		public string ConnectionString { get; private set; }
 
 		public int BatchSize { get; private set; }
+
+		public int GenerateRandomId(int id)
+		{
+			var random = new Random();
+
+			return id + random.Next(0, BatchSize - 1);
+		}
 	}
 }

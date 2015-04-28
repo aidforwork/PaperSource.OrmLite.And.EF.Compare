@@ -59,5 +59,23 @@ namespace OrmLiteModel
 				return db.Select<Order>();
 			}
 		}
+
+		public Order SelectById(int id)
+		{
+			using (var db = OpenDbConnection())
+			{
+				return db.SingleById<Order>(id);
+			}
+		}
+
+		public int SelectFirstId()
+		{
+			using (var db = OpenDbConnection())
+			{
+				return db.Scalar<Order, int>(order => Sql.Min(order.Id));
+
+				return db.Select<Order>().First().Id;
+			}
+		}
 	}
 }
